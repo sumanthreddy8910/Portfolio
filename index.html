@@ -179,32 +179,67 @@
       background: linear-gradient(to right, #555, #777);
       color: white;
     }
-   @media (max-width: 768px) {
-  .resume-button {
-    width: 30px;
-    height: 30px;
-    font-size: 0.7rem;
-    border-radius: 50%;
-    padding: 0;
+    @media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .sidebar img {
+    width: 80px;
+    height: 80px;
+    margin: 0;
+  }
+
+  .sidebar h2 {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .sidebar div {
+    margin: 0;
     display: flex;
+    gap: 0.5rem;
     align-items: center;
-    justify-content: center;
-    background: white;
-    color: #002244;
-    font-weight: bold;
-    box-shadow: none;
-    text-decoration: none;
   }
 
-  .resume-text {
-    display: none;
+  .main {
+    padding: 1rem;
+    height: auto;
   }
 
-  .resume-button::before {
-    display: none;
+  .skills-container {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1rem;
+  }
+
+  .fancy-btn {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.1rem;
+  }
+
+  .header button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+
+  .popup {
+    width: 95%;
+    padding: 0.5rem;
   }
 }
-
 </style>
 </head>
 <body>
@@ -222,7 +257,7 @@
       <a href="mailto:desireddysumanth77@gmail.com" class="circle-link" style="width: 30px; height: 30px; line-height: 30px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; background:white; color:#002244; border-radius:50%;">✉</a>
       <a href="https://linkedin.com/in/sumanth-d-773562361" target="_blank" class="circle-link" style="width: 30px; height: 30px; line-height: 30px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; background:white; color:#002244; border-radius:50%;">in</a>
     </div>
-  <!-- Place this under LinkedIn & Email buttons -->
+    <!-- Place this under LinkedIn & Email buttons -->
 <div style="margin-top: 0.8rem; display: flex; justify-content: center;">
   <a href="Sumanth_Resume.pdf" download class="resume-button" title="Download Resume">
     <span class="resume-text">📄 Download Resume</span>
@@ -297,6 +332,8 @@
 }
 
 </style>
+
+
 
 
     </div>
