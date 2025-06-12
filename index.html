@@ -259,25 +259,24 @@
     </div>
     <!-- Place this under LinkedIn & Email buttons -->
 <div style="margin-top: 0.8rem; display: flex; justify-content: center;">
-  <a href="Sumanth_Resume.pdf" download class="resume-button">
-    <span class="resume-button-text">📄 Download Resume</span>
+  <a href="Sumanth_Resume.pdf" download class="resume-button" title="Download Resume">
+    <span class="resume-text">📄 Download Resume</span>
+    <span class="resume-icon">⬇</span>
   </a>
 </div>
 
 <style>
   .resume-button {
-    padding: 0.5rem 1.2rem;
     background: linear-gradient(135deg, #002244, #00509e);
     color: white;
     text-decoration: none;
-    border-radius: 30px;
-    font-size: 0.9rem;
     font-weight: 600;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
-    letter-spacing: 0.5px;
   }
 
   .resume-button:hover {
@@ -285,28 +284,38 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
   }
 
-  /* Mobile View Style */
-  @media (max-width: 480px) {
+  /* Desktop style: full button */
+  @media (min-width: 481px) {
     .resume-button {
-      width: 35px;
-      height: 35px;
-      padding: 0;
-      border-radius: 50%;
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
     }
-
-    .resume-button::after {
-      content: "⬇"; /* Down arrow icon only on mobile */
-    }
-
-    .resume-button-text {
+    .resume-icon {
       display: none;
     }
   }
+
+  /* Mobile style: circular icon button */
+  @media (max-width: 480px) {
+    .resume-button {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 0.9rem;
+    }
+
+    .resume-text {
+      display: none;
+    }
+
+    .resume-icon {
+      display: inline;
+      font-size: 1.1rem;
+    }
+  }
+</style>
 </style>
 
 
