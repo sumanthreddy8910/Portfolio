@@ -104,13 +104,20 @@
       cursor: pointer;
       user-select: none;
     }
-    /* Email and LinkedIn icon styles */
+    /* Email and LinkedIn icon styles with hover animation */
     .sidebar-icons-container a.circle-link {
       width: 30px;
       height: 30px;
       line-height: 30px;
       font-size: 0.7rem;
       border-radius: 50%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+    .sidebar-icons-container a.circle-link:hover {
+      transform: scale(1.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      background-color: #1e3c72;
+      color: white;
     }
 
     /* Resume full pill button for desktop */
@@ -406,8 +413,6 @@
         <a href="Sumanth_Resume.pdf" download class="resume-button desktop-btn" title="Download Resume">
           📄 Download Resume
         </a>
-
-       
       </div>
     </div>
 
