@@ -268,57 +268,70 @@
 
   <style>
   .resume-button {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Hover effect */
+.resume-button::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transition: left 0.3s ease;
+}
+.resume-button:hover::before {
+  left: 100%;
+}
+
+/* Desktop style */
+@media (min-width: 481px) {
+  .resume-button {
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+  }
+  .resume-icon {
+    display: none;
+  }
+  .resume-text {
+    display: inline;
+  }
+}
+
+/* Mobile style: small rectangle with animation */
+@media (max-width: 480px) {
+  .resume-button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    min-width: 60px;
   }
 
-  .resume-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  .resume-icon {
+    display: inline;
+    margin-right: 4px;
+    font-size: 1rem;
   }
 
-  /* Desktop: full button with text */
-  @media (min-width: 481px) {
-    .resume-button {
-      padding: 0.5rem 1.2rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-    }
-    .resume-icon {
-      display: none;
-    }
-    .resume-text {
-      display: inline;
-    }
+  .resume-text {
+    display: inline;
   }
+}
 
-  /* Mobile: stylish small circular button */
-  @media (max-width: 480px) {
-    .resume-button {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      padding: 0;
-    }
-
-    .resume-icon {
-      display: inline;
-    }
-
-    .resume-text {
-      display: none;
-    }
-  }
 </style>
 
 
