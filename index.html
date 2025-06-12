@@ -200,7 +200,7 @@
       }
     }
     /* Hide desktop pill button on mobile, show icon button */
-    @media (max-width: 180px) {
+    @media (max-width: 480px) {
       .resume-button {
         display: none;
       }
@@ -308,6 +308,17 @@
     body.dark .sidebar a {
       color: #f0f0f0;
     }
+    /* Dark mode fixes for sidebar icons and resume button */
+    body.dark .sidebar-icons-container a {
+      background: #333 !important;
+      color: #f0f0f0 !important;
+      box-shadow: none !important;
+    }
+    body.dark .sidebar-icons-container a.circle-link:hover,
+    body.dark .resume-button:hover {
+      background: #555 !important;
+      color: white !important;
+    }
     body.dark .main {
       background-color: #121212;
       color: #f0f0f0;
@@ -388,8 +399,8 @@
       <h2>Sumanth D</h2>
 
       <div class="sidebar-icons-container">
-        <a href="mailto:desireddysumanth77@gmail.com" class="circle-link">✉</a>
-        <a href="https://linkedin.com/in/sumanth-d-773562361" target="_blank" class="circle-link">in</a>
+        <a href="mailto:desireddysumanth77@gmail.com" class="circle-link" title="Send Email">✉</a>
+        <a href="https://linkedin.com/in/sumanth-d-773562361" target="_blank" class="circle-link" title="LinkedIn Profile">in</a>
 
         <!-- Full pill button for desktop -->
         <a href="Sumanth_Resume.pdf" download class="resume-button desktop-btn" title="Download Resume">
@@ -397,7 +408,9 @@
         </a>
 
         <!-- Small circle icon button for mobile -->
-      
+        <a href="Sumanth_Resume.pdf" download class="resume-button mobile-btn" title="Download Resume">
+          📄
+        </a>
       </div>
     </div>
 
