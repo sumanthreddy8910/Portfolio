@@ -76,12 +76,133 @@
       font-size: 1.2rem;
       margin: 0.5rem 0;
     }
-    .sidebar a {
-      color: white;
-      font-size: 0.75rem;
-      text-decoration: none;
-      margin: 0.25rem 0;
+
+    /* Container for icons + resume buttons */
+    .sidebar-icons-container {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+      width: 100%;
     }
+    .sidebar-icons-container a {
+      text-decoration: none;
+      color: #002244;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      user-select: none;
+    }
+    /* Email and LinkedIn icon styles */
+    .sidebar-icons-container a.circle-link {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 0.7rem;
+      border-radius: 50%;
+    }
+
+    /* Resume full pill button for desktop */
+    .resume-button {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      font-weight: 600;
+      border-radius: 30px;
+      padding: 0 1rem;
+      height: 30px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      border: none;
+      user-select: none;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .resume-button::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      transition: left 0.3s ease;
+      border-radius: 30px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .resume-button:hover::before {
+      left: 100%;
+    }
+    .resume-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(30, 60, 114, 0.6);
+    }
+
+    /* Mobile icon-only resume button (hidden on desktop) */
+    .resume-button.mobile-btn {
+      display: none;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      justify-content: center;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+    .resume-button.mobile-btn::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      transition: left 0.3s ease;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .resume-button.mobile-btn:hover::before {
+      left: 100%;
+    }
+    .resume-button.mobile-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(30, 60, 114, 0.6);
+    }
+
+    /* Hide mobile icon button on desktop */
+    @media (min-width: 481px) {
+      .resume-button.mobile-btn {
+        display: none;
+      }
+    }
+    /* Hide desktop pill button on mobile, show icon button */
+    @media (max-width: 480px) {
+      .resume-button {
+        display: none;
+      }
+      .resume-button.mobile-btn {
+        display: inline-flex;
+      }
+    }
+
     .main {
       flex: 1;
       padding: 2rem;
@@ -94,17 +215,17 @@
       margin-bottom: 1rem;
     }
     .skills-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 1.5rem;
-  align-items: center;
-  justify-items: center;
-}
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 1.5rem;
+      align-items: center;
+      justify-items: center;
+    }
     .skills-container div {
-  text-align: center;
-  width: 100px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+      text-align: center;
+      width: 100px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
     .skills-container div:hover {
       transform: scale(1.1);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -138,9 +259,24 @@
       border-radius: 8px;
       max-width: 500px;
       width: 90%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .popup.show {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
     }
     .popup button {
       float: right;
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #0072ff;
     }
     .overlay {
       display: none;
@@ -149,10 +285,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0,0,0,0.5);
       z-index: 98;
     }
-  
     body.dark {
       background-color: #121212;
       color: #f0f0f0;
@@ -180,67 +315,57 @@
       color: white;
     }
     @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
-    padding: 1rem;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .sidebar img {
-    width: 80px;
-    height: 80px;
-    margin: 0;
-  }
-
-  .sidebar h2 {
-    font-size: 1rem;
-    margin: 0;  
-  }
-
-  .sidebar div {
-    margin: 0;
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-  }
-
-  .main {
-    padding: 1rem;
-    height: auto;
-  }
-
-  .skills-container {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 1rem;
-  }
-
-  .fancy-btn {
-    width: 100%;
-    font-size: 0.9rem;
-    padding: 0.6rem 1rem;
-  }
-
-  .header h1 {
-    font-size: 1.1rem;
-  }
-
-  .header button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.7rem;
-  }
-
-  .popup {
-    width: 95%;
-    padding: 0.5rem;
-  }
-}
-</style>
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .sidebar img {
+        width: 80px;
+        height: 80px;
+        margin: 0;
+      }
+      .sidebar h2 {
+        font-size: 1rem;
+        margin: 0;
+        align-self: center;
+        flex-grow: 1;
+      }
+      .sidebar-icons-container {
+        justify-content: flex-end;
+        gap: 0.75rem;
+      }
+      .main {
+        padding: 1rem;
+        height: auto;
+      }
+      .skills-container {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 1rem;
+      }
+      .fancy-btn {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+      }
+      .header h1 {
+        font-size: 1.1rem;
+      }
+      .header button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+      }
+      .popup {
+        width: 95%;
+        padding: 0.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="header">
@@ -248,78 +373,26 @@
     <button onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
   </div>
   <div class="container">
-  <div class="sidebar">
-    <img src="profile.jpg" alt="Profile Photo">
-    <h2>Sumanth D</h2>
+    <div class="sidebar">
+      <img src="profile.jpg" alt="Profile Photo" />
+      <h2>Sumanth D</h2>
 
-    <!-- Email & LinkedIn -->
-    <div style="display: flex; gap: 0.4rem; margin: 0.5rem 0;">
-      <a href="mailto:desireddysumanth77@gmail.com" class="circle-link" style="width: 30px; height: 30px; line-height: 30px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; background:white; color:#002244; border-radius:50%;">✉</a>
-      <a href="https://linkedin.com/in/sumanth-d-773562361" target="_blank" class="circle-link" style="width: 30px; height: 30px; line-height: 30px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; background:white; color:#002244; border-radius:50%;">in</a>
+      <div class="sidebar-icons-container">
+        <a href="mailto:desireddysumanth77@gmail.com" class="circle-link">✉</a>
+        <a href="https://linkedin.com/in/sumanth-d-773562361" target="_blank" class="circle-link">in</a>
+
+        <!-- Full pill button for desktop -->
+        <a href="Sumanth_Resume.pdf" download class="resume-button desktop-btn" title="Download Resume">
+          📄 Download Resume
+        </a>
+
+        <!-- Small circle icon button for mobile -->
+        <a href="Sumanth_Resume.pdf" download class="resume-button mobile-btn" title="Download Resume">
+          📄
+        </a>
+      </div>
     </div>
-    <!-- Place this under LinkedIn & Email buttons -->
-<div style="margin-top: 0.4rem; display: flex; justify-content: center;">
-  <a href="Sumanth_Resume.pdf" download class="resume-button" title="Download Resume">
-    <span class="resume-text">📄 Download Resume</span>
-  </a>
-</div>
 
-
-  <style>
-  .resume-button {
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-  position: relative;
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  font-size: 1rem;
-  width: auto;
-  max-width: 280px;
-  margin: 0 auto;
-}
-
-.resume-button::before {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.15);
-  transition: left 0.3s ease;
-  border-radius: 50px;
-}
-
-.resume-button:hover::before {
-  left: 100%;
-}
-
-.resume-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(30, 60, 114, 0.6);
-}
-
-/* Mobile responsiveness */
-@media (max-width: 480px) {
-  .resume-button {
-    width: 100%;
-    font-size: 1.1rem;
-    padding: 0.75rem 0;
-    border-radius: 50px;
-  }
-}
-</style>
-
-    </div>
     <div class="main">
       <section class="section">
         <h2>About Me</h2>
@@ -327,54 +400,41 @@
       </section>
 
       <section class="section">
-  <h2>Skills</h2>
-  <div class="skills-container">
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40"><br><strong>Python</strong></div>
-    <div><img src="https://img.icons8.com/color/48/artificial-intelligence.png" width="40"><br><strong>AI</strong></div>
-    <div><img src="https://img.icons8.com/external-flat-juicy-fish/60/external-machine-learning-artificial-intelligence-flat-flat-juicy-fish.png" width="40"><br><strong>ML</strong></div>
-    <div><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/LangChain_logo.svg" width="40"><br><strong>LangChain</strong></div>
-    <div><img src="https://avatars.githubusercontent.com/u/77845880?s=200&v=4" width="40"><br><strong>Pinecone</strong></div>
-    <div><img src="https://avatars.githubusercontent.com/u/139380107?s=200&v=4" width="40"><br><strong>Crew.ai</strong></div>
-    <div><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" width="40"><br><strong>Whisper</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" width="40"><br><strong>AWS</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40"><br><strong>Docker</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="40"><br><strong>MongoDB</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="40"><br><strong>MySQL</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" width="40"><br><strong>Vue</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="40"><br><strong>Node</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="40"><br><strong>Flask</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40"><br><strong>HTML</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40"><br><strong>CSS</strong></div>
-  </div>
-</section>
+        <h2>Skills</h2>
+        <div class="skills-container">
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40"><br><strong>Python</strong></div>
+          <div><img src="https://img.icons8.com/color/48/artificial-intelligence.png" width="40"><br><strong>AI</strong></div>
+          <div><img src="https://img.icons8.com/external-flat-juicy-fish/60/external-machine-learning-artificial-intelligence-flat-flat-juicy-fish.png" width="40"><br><strong>ML</strong></div>
+          <div><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/LangChain_logo.svg" width="40"><br><strong>LangChain</strong></div>
+          <div><img src="https://avatars.githubusercontent.com/u/77845880?s=200&v=4" width="40"><br><strong>Pinecone</strong></div>
+          <div><img src="https://avatars.githubusercontent.com/u/139380107?s=200&v=4" width="40"><br><strong>Crew.ai</strong></div>
+          <div><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" width="40"><br><strong>Whisper</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" width="40"><br><strong>AWS</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40"><br><strong>Docker</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="40"><br><strong>MongoDB</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="40"><br><strong>MySQL</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" width="40"><br><strong>Vue</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="40"><br><strong>Node</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="40"><br><strong>Flask</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40"><br><strong>HTML</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40"><br><strong>CSS</strong></div>
+        </div>
+      </section>
 
-      
-
-<section class="section">
-  <h2>Experience Details</h2>
-  <div class="popup" id="exp1"><button onclick="hideAllPopups()">X</button>
-    <h3>Sep 2024 - Present</h3>
-    <p>Worked on GPT-4 based virtual health assistants with LangChain, Crew.ai, Pinecone. Deployed on AWS with Flask APIs.</p></div>
-  <div class="popup" id="exp2"><button onclick="hideAllPopups()">X</button>
-    <h3>July 2023 - Aug 2024</h3>
-    <p>Built healthcare chatbot using GPT-3.5, FastAPI, and Pinecone for semantic search with real-time inference.</p></div>
-  <div class="popup" id="exp3"><button onclick="hideAllPopups()">X</button>
-    <h3>Aug 2021 - July 2022</h3>
-    <p>Interned with focus on Flask/Spring Boot API development, MySQL/MongoDB, and Agile processes.</p></div>
-</section>
-<script>
-  function showPopup(id) {
-    document.getElementById(id).style.display = 'block';
-    document.querySelector('.overlay').style.display = 'block';
-  }
-  function hideAllPopups() {
-    document.querySelectorAll('.popup').forEach(p => p.style.display = 'none');
-    document.querySelector('.overlay').style.display = 'none';
-  }
-</script>
-<div class="overlay" onclick="hideAllPopups()"></div>
-
-
+      <section class="section">
+        <h2>Experience Details</h2>
+        <div class="popup" id="exp1"><button onclick="hideAllPopups()">X</button>
+          <h3>Sep 2024 - Present</h3>
+          <p>Worked on GPT-4 based virtual health assistants with LangChain, Crew.ai, Pinecone. Deployed on AWS with Flask APIs.</p>
+        </div>
+        <div class="popup" id="exp2"><button onclick="hideAllPopups()">X</button>
+          <h3>July 2023 - Aug 2024</h3>
+          <p>Built healthcare chatbot using GPT-3.5, FastAPI, and Pinecone for semantic search with real-time inference.</p>
+        </div>
+        <div class="popup" id="exp3"><button onclick="hideAllPopups()">X</button>
+          <h3>Aug 2021 - July 2022</h3>
+          <p>Interned with focus on Flask/Spring Boot API development, MySQL/MongoDB, and Agile processes.</p>
+        </div>
         <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
           <button class="fancy-btn" onclick="showPopup('exp1')">KKRGenAI Innovations</button>
           <button class="fancy-btn" onclick="showPopup('exp2')">RiteCare</button>
@@ -384,6 +444,30 @@
 
       <section class="section">
         <h2>Academic Projects</h2>
+        <div class="popup" id="proj1"><button onclick="hideAllPopups()">X</button>
+          <h3>University of New Haven - 2024</h3>
+          <p>Developed a full-stack web application to manage and interact with dynamic data.</p>
+        </div>
+        <div class="popup" id="proj2"><button onclick="hideAllPopups()">X</button>
+          <h3>University of New Haven - 2024</h3>
+          <p>NLP-based Facebook spam detection using data mining techniques. Visualized with ROC curves and heatmaps.</p>
+        </div>
+        <div class="popup" id="proj3"><button onclick="hideAllPopups()">X</button>
+          <h3>University of New Haven - 2024</h3>
+          <p>Real-time dashboard application developed using MongoDB, Vue, and Node.js.</p>
+        </div>
+        <div class="popup" id="proj4"><button onclick="hideAllPopups()">X</button>
+          <h3>University of New Haven - 2023</h3>
+          <p>Secure steganography tool embedding data within BMP/WAV formats for secure transmission.</p>
+        </div>
+        <div class="popup" id="proj5"><button onclick="hideAllPopups()">X</button>
+          <h3>University of New Haven - 2022</h3>
+          <p>Comprehensive clinic management with patient records, billing, and MySQL backend.</p>
+        </div>
+        <div class="popup" id="proj6"><button onclick="hideAllPopups()">X</button>
+          <h3>SRM University (2021-2022)</h3>
+          <p>ML-based ensemble classifier achieving 94.5% accuracy in fake news detection.</p>
+        </div>
         <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
           <button class="fancy-btn" onclick="showPopup('proj1')">Web-Database Application Development</button>
           <button class="fancy-btn" onclick="showPopup('proj2')">Facebook Spam Detection</button>
@@ -400,25 +484,22 @@
           <li><strong>Master of Science in Computer Science</strong> – University of New Haven, CT(2022 – 2024), GPA: 3.71/4.0</li>
           <li><strong>Bachelor of Technology in Computer Science and Engineering</strong> – SRM University, Chennai, India(2018 – 2022), CGPA: 9.45/10.0</li>
         </ul>
-      <div class="popup" id="proj1"><button onclick="hideAllPopups()">X</button>
-        <h3>University of New Haven - 2024</h3>
-        <p>Developed a full-stack web application to manage and interact with dynamic data.</p></div>
-      <div class="popup" id="proj2"><button onclick="hideAllPopups()">X</button>
-        <h3>University of New Haven - 2024</h3>
-        <p>NLP-based Facebook spam detection using data mining techniques. Visualized with ROC curves and heatmaps.</p></div>
-      <div class="popup" id="proj3"><button onclick="hideAllPopups()">X</button>
-        <h3>University of New Haven - 2024</h3>
-        <p>Real-time dashboard application developed using MongoDB, Vue, and Node.js.</p></div>
-      <div class="popup" id="proj4"><button onclick="hideAllPopups()">X</button>
-        <h3>University of New Haven - 2023</h3>
-        <p>Secure steganography tool embedding data within BMP/WAV formats for secure transmission.</p></div>
-      <div class="popup" id="proj5"><button onclick="hideAllPopups()">X</button>
-        <h3>University of New Haven - 2022</h3>
-        <p>Comprehensive clinic management with patient records, billing, and MySQL backend.</p></div>
-      <div class="popup" id="proj6"><button onclick="hideAllPopups()">X</button>
-        <h3>SRM University (2021-2022)</h3>
-        <p>ML-based ensemble classifier achieving 94.5% accuracy in fake news detection.</p></div>
+      </section>
     </div>
   </div>
+
+  <div class="overlay" onclick="hideAllPopups()"></div>
+
+  <script>
+    function showPopup(id) {
+      const popup = document.getElementById(id);
+      popup.classList.add('show');
+      document.querySelector('.overlay').style.display = 'block';
+    }
+    function hideAllPopups() {
+      document.querySelectorAll('.popup').forEach(p => p.classList.remove('show'));
+      document.querySelector('.overlay').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
