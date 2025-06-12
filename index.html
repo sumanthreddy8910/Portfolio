@@ -72,9 +72,15 @@
       margin-bottom: 1rem;
       border: 2px solid #fff;
     }
+    /* Name styles: force single line with ellipsis if too long */
     .sidebar h2 {
       font-size: 1.2rem;
       margin: 0.5rem 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      text-align: center;
     }
 
     /* Container for icons + resume buttons */
@@ -324,6 +330,7 @@
         padding: 1rem;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
       }
       .sidebar img {
         width: 80px;
@@ -335,6 +342,9 @@
         margin: 0;
         align-self: center;
         flex-grow: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .sidebar-icons-container {
         justify-content: flex-end;
@@ -387,7 +397,9 @@
         </a>
 
         <!-- Small circle icon button for mobile -->
-
+        <a href="Sumanth_Resume.pdf" download class="resume-button mobile-btn" title="Download Resume">
+          📄
+        </a>
       </div>
     </div>
 
@@ -400,22 +412,22 @@
       <section class="section">
         <h2>Skills</h2>
         <div class="skills-container">
-          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40"><br><strong>Python</strong></div>
-          <div><img src="https://img.icons8.com/color/48/artificial-intelligence.png" width="40"><br><strong>AI</strong></div>
-          <div><img src="https://img.icons8.com/external-flat-juicy-fish/60/external-machine-learning-artificial-intelligence-flat-flat-juicy-fish.png" width="40"><br><strong>ML</strong></div>
-          <div><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/LangChain_logo.svg" width="40"><br><strong>LangChain</strong></div>
-          <div><img src="https://avatars.githubusercontent.com/u/77845880?s=200&v=4" width="40"><br><strong>Pinecone</strong></div>
-          <div><img src="https://avatars.githubusercontent.com/u/139380107?s=200&v=4" width="40"><br><strong>Crew.ai</strong></div>
-          <div><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" width="40"><br><strong>Whisper</strong></div>
-          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" width="40"><br><strong>AWS</strong></div>
-          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40"><br><strong>Docker</strong></div>
-          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="40"><br><strong>MongoDB</strong></div>
-          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="40"><br><strong>MySQL</strong></div>
-          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" width="40"><br><strong>Vue</strong></div>
-          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="40"><br><strong>Node</strong></div>
-          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="40"><br><strong>Flask</strong></div>
-          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40"><br><strong>HTML</strong></div>
-          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40"><br><strong>CSS</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" alt="Python logo"><br><strong>Python</strong></div>
+          <div><img src="https://img.icons8.com/color/48/artificial-intelligence.png" width="40" alt="Artificial Intelligence logo"><br><strong>AI</strong></div>
+          <div><img src="https://img.icons8.com/external-flat-juicy-fish/60/external-machine-learning-artificial-intelligence-flat-flat-juicy-fish.png" width="40" alt="Machine Learning logo"><br><strong>ML</strong></div>
+          <div><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/LangChain_logo.svg" width="40" alt="LangChain logo"><br><strong>LangChain</strong></div>
+          <div><img src="https://avatars.githubusercontent.com/u/77845880?s=200&v=4" width="40" alt="Pinecone logo"><br><strong>Pinecone</strong></div>
+          <div><img src="https://avatars.githubusercontent.com/u/139380107?s=200&v=4" width="40" alt="Crew.ai logo"><br><strong>Crew.ai</strong></div>
+          <div><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" width="40" alt="Whisper logo"><br><strong>Whisper</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" width="40" alt="AWS logo"><br><strong>AWS</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40" alt="Docker logo"><br><strong>Docker</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="40" alt="MongoDB logo"><br><strong>MongoDB</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="40" alt="MySQL logo"><br><strong>MySQL</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" width="40" alt="Vue.js logo"><br><strong>Vue</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="40" alt="Node.js logo"><br><strong>Node</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="40" alt="Flask logo"><br><strong>Flask</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" alt="HTML5 logo"><br><strong>HTML</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" alt="CSS3 logo"><br><strong>CSS</strong></div>
         </div>
       </section>
 
