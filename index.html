@@ -52,7 +52,6 @@
       display: flex;
       flex-wrap: nowrap;
       min-height: 100vh; /* full viewport height */
-      /* Make container full height */
       height: 100%;
     }
     .sidebar {
@@ -60,12 +59,12 @@
       color: white;
       width: 240px;
       min-width: 240px;
-      height: 100%; /* fill container height */
+      height: 100%;
       padding: 2rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: sticky; /* sticky to top on scroll */
+      position: sticky;
       top: 0;
     }
     .sidebar img {
@@ -76,7 +75,6 @@
       margin-bottom: 1rem;
       border: 2px solid #fff;
     }
-    /* Name styles: force single line with ellipsis if too long */
     .sidebar h2 {
       font-size: 1.2rem;
       margin: 0.5rem 0;
@@ -86,8 +84,6 @@
       width: 100%;
       text-align: center;
     }
-
-    /* Container for icons + resume buttons */
     .sidebar-icons-container {
       display: flex;
       gap: 0.5rem;
@@ -108,7 +104,6 @@
       cursor: pointer;
       user-select: none;
     }
-    /* Email and LinkedIn icon styles with hover animation */
     .sidebar-icons-container a.circle-link {
       width: 30px;
       height: 30px;
@@ -123,8 +118,6 @@
       background-color: #1e3c72;
       color: white;
     }
-
-    /* Resume full pill button for desktop */
     .resume-button {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: white;
@@ -164,8 +157,6 @@
       transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(30, 60, 114, 0.6);
     }
-
-    /* Mobile icon-only resume button (hidden on desktop) */
     .resume-button.mobile-btn {
       display: none;
       width: 30px;
@@ -203,14 +194,11 @@
       transform: scale(1.1);
       box-shadow: 0 8px 20px rgba(30, 60, 114, 0.6);
     }
-
-    /* Hide mobile icon button on desktop */
     @media (min-width: 481px) {
       .resume-button.mobile-btn {
         display: none;
       }
     }
-    /* Hide desktop pill button on mobile, show icon button */
     @media (max-width: 480px) {
       .resume-button {
         display: none;
@@ -219,7 +207,6 @@
         display: inline-flex;
       }
     }
-
     .main {
       flex: 1;
       padding: 2rem;
@@ -319,7 +306,6 @@
     body.dark .sidebar a {
       color: #f0f0f0;
     }
-    /* Dark mode fixes for sidebar icons and resume button */
     body.dark .sidebar-icons-container a {
       background: #333 !important;
       color: #f0f0f0 !important;
@@ -397,6 +383,29 @@
         padding: 0.5rem;
       }
     }
+    /* Styles for GitHub and Netlify links in popup */
+    .popup-icons {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .popup-icons a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #0072ff;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .popup-icons a img {
+      width: 20px;
+      height: 20px;
+    }
+    .popup-icons a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -408,51 +417,43 @@
     <div class="sidebar">
       <img src="profile.jpg" alt="Profile Photo" />
       <h2>Sumanth D</h2>
-
       <div class="sidebar-icons-container">
         <a href="mailto:desireddysumanth77@gmail.com" class="circle-link" title="Send Email">✉</a>
         <a href="https://linkedin.com/in/sumanth-d-773562361" target="_blank" class="circle-link" title="LinkedIn Profile">in</a>
-
-        <!-- Full pill button for desktop -->
         <a href="Sumanth_Resume.pdf" download class="resume-button desktop-btn" title="Download Resume">
           📄 Download Resume
         </a>
       </div>
     </div>
-
     <div class="main">
       <section class="section">
         <h2>About Me</h2>
         <p> Results-driven software engineer with a Master’s in Computer Science from the University of New Haven, specializing in full stack and Generative AI development. Proficient in Python, Flask, Spring Boot, FastAPI, JavaScript, Vue.js, Node.js, and LangChain. Experienced in designing multi-agent AI systems using Crew.ai, implementing RAG pipelines with LangChain, Pinecone, and Hugging Face embeddings, and integrating LLMs such as GPT-4, LLaMA, and Mistral. Skilled in fine-tuning models using LoRA/QLoRA. Strong background in deploying scalable applications on AWS (Lambda, ECS), containerization with Docker, and managing data with MySQL and MongoDB. Adept in Agile workflows, DevOps practices, CI/CD pipelines, and building robust, real-time, and user-centric AI applications in cross-functional environments. </p>
       </section>
-
       <section class="section">
-  <h2>Skills</h2>
-  <div class="skills-container">
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" alt="Python logo"><br><strong>Python</strong></div>
-    <div><img src="https://img.icons8.com/color/48/artificial-intelligence.png" width="40" alt="Artificial Intelligence logo"><br><strong>AI</strong></div>
-    <div><img src="https://img.icons8.com/ios-filled/50/000000/machine-learning.png" width="40" alt="Machine Learning logo"><br><strong>ML</strong></div>
-    <div>
+        <h2>Skills</h2>
+        <div class="skills-container">
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" alt="Python logo"><br><strong>Python</strong></div>
+          <div><img src="https://img.icons8.com/color/48/artificial-intelligence.png" width="40" alt="Artificial Intelligence logo"><br><strong>AI</strong></div>
+          <div><img src="https://img.icons8.com/ios-filled/50/000000/machine-learning.png" width="40" alt="Machine Learning logo"><br><strong>ML</strong></div>
+          <div>
             <img src="https://cdn.simpleicons.org/langchain/000000" width="40" alt="LangChain logo" />
             <br /><strong>LangChain</strong>
           </div>
-    
-    <div><img src="Pine.png" width="40" alt="Pinecone logo" /><br><strong>Pinecone</strong></div>
-    <div><img src="crewai.png" width="40" alt="Crew.ai logo"><br><strong>Crew.ai</strong></div>
-    <div><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" width="40" alt="Whisper logo"><br><strong>Whisper</strong></div>
-    <div><img src="https://cdn.worldvectorlogo.com/logos/amazon-web-services-2.svg" width="40" alt="AWS logo"><br><strong>AWS</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40" alt="Docker logo"><br><strong>Docker</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="40" alt="MongoDB logo"><br><strong>MongoDB</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="40" alt="MySQL logo"><br><strong>MySQL</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" width="40" alt="Vue.js logo"><br><strong>Vue</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="40" alt="Node.js logo"><br><strong>Node</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="40" alt="Flask logo"><br><strong>Flask</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" alt="HTML5 logo"><br><strong>HTML</strong></div>
-    <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" alt="CSS3 logo"><br><strong>CSS</strong></div>
-  </div>
-</section>
-
-
+          <div><img src="Pine.png" width="40" alt="Pinecone logo" /><br><strong>Pinecone</strong></div>
+          <div><img src="crewai.png" width="40" alt="Crew.ai logo"><br><strong>Crew.ai</strong></div>
+          <div><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" width="40" alt="Whisper logo"><br><strong>Whisper</strong></div>
+          <div><img src="https://cdn.worldvectorlogo.com/logos/amazon-web-services-2.svg" width="40" alt="AWS logo"><br><strong>AWS</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40" alt="Docker logo"><br><strong>Docker</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="40" alt="MongoDB logo"><br><strong>MongoDB</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="40" alt="MySQL logo"><br><strong>MySQL</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" width="40" alt="Vue.js logo"><br><strong>Vue</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="40" alt="Node.js logo"><br><strong>Node</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="40" alt="Flask logo"><br><strong>Flask</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" alt="HTML5 logo"><br><strong>HTML</strong></div>
+          <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" alt="CSS3 logo"><br><strong>CSS</strong></div>
+        </div>
+      </section>
       <section class="section">
         <h2>Experience Details</h2>
         <div class="popup" id="exp1"><button onclick="hideAllPopups()">X</button>
@@ -473,32 +474,67 @@
           <button class="fancy-btn" onclick="showPopup('exp3')">Intellectuals AI Solutions</button>
         </div>
       </section>
-
       <section class="section">
         <h2>Academic Projects</h2>
         <div class="popup" id="proj1"><button onclick="hideAllPopups()">X</button>
           <h3>University of New Haven - 2024</h3>
           <p>Developed a full-stack web application to manage and interact with dynamic data.</p>
+          <div class="popup-icons">
+            <a href="https://github.com/sumanthreddy8910/sumanth_vue.git" target="_blank" title="GitHub Vue.js Frontend">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" /> Vue.js Frontend
+            </a>
+            <a href="https://github.com/sumanthreddy8910/sumanth_node.git" target="_blank" title="GitHub Node.js Backend">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" /> Node.js Backend
+            </a>
+          </div>
         </div>
         <div class="popup" id="proj2"><button onclick="hideAllPopups()">X</button>
           <h3>University of New Haven - 2024</h3>
-          <p>NLP-based Facebook spam detection using data mining techniques. Visualized with ROC curves and heatmaps.</p>
+          <p>NLP-based Facebook spam detection using data mining techniques.</p>
+          <div class="popup-icons">
+            <a href="https://github.com/sumanthreddy8910/Final-Report-Data_Mining.git" target="_blank" title="GitHub Repository">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" /> GitHub
+            </a>
+          </div>
         </div>
         <div class="popup" id="proj3"><button onclick="hideAllPopups()">X</button>
           <h3>University of New Haven - 2024</h3>
-          <p>Real-time dashboard application developed using MongoDB, Vue, and Node.js.</p>
+          <p>Full-stack web application enabling users to interact and manage data dynamically.</p>
+          <div class="popup-icons">
+            <a href="https://github.com/sumanthreddy8910/sumanth_node.git" target="_blank" title="GitHub Repository">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" /> GitHub
+            </a>
+            <a href="https://sumanth-reddy.netlify.app/" target="_blank" title="Live Demo on Netlify">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Netlify_logo.svg" alt="Netlify" style="width: 24px; height: 24px;" /> Live Demo
+            </a>
+          </div>
         </div>
         <div class="popup" id="proj4"><button onclick="hideAllPopups()">X</button>
           <h3>University of New Haven - 2023</h3>
           <p>Secure steganography tool embedding data within BMP/WAV formats for secure transmission.</p>
+          <div class="popup-icons">
+            <a href="https://github.com/sumanthreddy8910/Steaganography---Research-Paper.git" target="_blank" title="GitHub Repository">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" /> GitHub
+            </a>
+          </div>
         </div>
         <div class="popup" id="proj5"><button onclick="hideAllPopups()">X</button>
           <h3>University of New Haven - 2022</h3>
-          <p>Comprehensive clinic management with patient records, billing, and MySQL backend.</p>
+          <p>Comprehensive dentist polyclinic management system with patient records, billing, and MySQL backend.</p>
+          <div class="popup-icons">
+            <a href="https://github.com/sumanthreddy8910/Dentist-Polyclinic-Management-System-DBMS-.git" target="_blank" title="GitHub Repository">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" /> GitHub
+            </a>
+          </div>
         </div>
         <div class="popup" id="proj6"><button onclick="hideAllPopups()">X</button>
           <h3>SRM University (2021-2022)</h3>
           <p>ML-based ensemble classifier achieving 94.5% accuracy in fake news detection.</p>
+          <div class="popup-icons">
+            <a href="https://github.com/sumanthreddy8910/Learning-Based-Fake-News-Detector-Using-Multiple-Features-Using-Machine-Learning.git" target="_blank" title="GitHub Repository">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" /> GitHub
+            </a>
+          </div>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
           <button class="fancy-btn" onclick="showPopup('proj1')">Web-Database Application Development</button>
@@ -509,7 +545,6 @@
           <button class="fancy-btn" onclick="showPopup('proj6')">Fake News Detector with ML</button>
         </div>
       </section>
-
       <section class="section">
         <h2>Education</h2>
         <ul>
